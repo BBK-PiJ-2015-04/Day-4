@@ -1,3 +1,5 @@
+// INCOMPLETE!!!!
+
 print ("Please the base: ");
 String userInput = System.console().readLine();
 int base = Integer.parseInt(userInput);
@@ -6,7 +8,8 @@ print ("Please the exponent: ");
 userInput = System.console().readLine();
 int exponent = Integer.parseInt(userInput);
 
-println (power (base, exponent));
+println (base + " to the power of " + exponent + " is " + power (base, exponent));
+println ("Two to the power of " + exponent + " is " + power2 (exponent));
 
 int power (int base, int exponent) {
 	if (exponent == 0) { // anything to the power of zero is 1!
@@ -17,4 +20,8 @@ int power (int base, int exponent) {
 		result = result * base;
 	}
 return result;
+}
+
+int power2 (int exponent) {
+	return (power (2, exponent));
 }
