@@ -1,0 +1,20 @@
+print ("Please the base: ");
+String userInput = System.console().readLine();
+int base = Integer.parseInt(userInput);
+
+print ("Please the exponent: ");
+userInput = System.console().readLine();
+int exponent = Integer.parseInt(userInput);
+
+println (power (base, exponent));
+
+int power (int base, int exponent) {
+	if (exponent == 0) { // anything to the power of zero is 1!
+		return 1;
+	}
+	int result = base;
+	for (int i = 1; i < exponent; i++) {
+		result = result * base;
+	}
+return result;
+}
