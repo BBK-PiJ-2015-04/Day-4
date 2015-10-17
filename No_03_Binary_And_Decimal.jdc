@@ -1,12 +1,17 @@
 // INCOMPLETE!!!!
 
-print ("Please the base: ");
+print ("Please enter the base: ");
 String userInput = System.console().readLine();
 int base = Integer.parseInt(userInput);
 
-print ("Please the exponent: ");
+print ("Please enter the exponent: ");
 userInput = System.console().readLine();
 int exponent = Integer.parseInt(userInput);
+
+print ("Enter a binary number: ");
+String binaryNumber = System.console().readLine();
+
+println (binary2decimal (binaryNumber));
 
 println (base + " to the power of " + exponent + " is " + power (base, exponent));
 println ("Two to the power of " + exponent + " is " + power2 (exponent));
@@ -24,4 +29,34 @@ return result;
 
 int power2 (int exponent) {
 	return (power (2, exponent));
+}
+
+int binary2decimal (String binaryNumber) {
+	int numberLength = binaryNumber.length();
+	int decimalNumber = 0;
+	String digit;
+	for (int i = (numberLength - 1); i != (-1); i--) {
+		digit = (binaryNumber.substring (i, i + 1));
+		if (digit.equals("1")) {
+			decimalNumber = decimalNumber + (1 * (power2 (numberLength - i - 1)));
+		}
+	}
+	return decimalNumber;
+}
+
+String decimal2binary (int decimalNum) {
+	int numberLength = binaryNumber.length();
+	int decimalNumber = 0;
+	String digit;
+	for (int i = (numberLength - 1); i != (-1); i--) {
+		digit = (binaryNumber.substring (i, i + 1));
+		if (digit.equals("1")) {
+			decimalNumber = decimalNumber + (1 * (power2 (numberLength - i - 1)));
+		}
+	}
+	return decimalNumber;
+}
+
+
+
 }
