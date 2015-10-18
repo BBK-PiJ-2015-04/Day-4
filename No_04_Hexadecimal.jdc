@@ -8,7 +8,7 @@ if (userInput.equals("1")) {
 	print ("Enter a decimal number: ");
 	userInput = System.console().readLine();
 	int decimalNumber = Integer.parseInt(userInput);
-	// println ("The hexadecimal equivalent is " + decimal2binary(decimalNumber));
+	println ("The hexadecimal equivalent is " + decimal2hexadecimal(decimalNumber));
 }
 
 else {
@@ -36,29 +36,12 @@ int hexadecimal2decimal (String hexadecimal) {
 	int numberLength = hexadecimal.length();
 	int decimalNumber = 0;
 	char digit;
-	int ascii;
-	int hexaDigit;
 	for (int i = (numberLength - 1); i != (-1); i--) {
 		digit = (hexadecimal.charAt(i));
-		ascii = digit;
-		if (ascii >= 48 && ascii <= 57) { // digit is a number
-			hexaDigit = ascii - 48;
-		}
-		else { //digit is a letter
-			hexaDigit = ascii - 87;
-		}
-		decimalNumber = decimalNumber + hexaDigit + (1 * (power16 (numberLength - i - 1)));
-		
-		println (digit);
-		println (ascii);
-		println (hexaDigit);
-		
-		
+		decimalNumber = decimalNumber + (hexaDigitToDecimal(digit) * (1 * (power16 (numberLength - i - 1))));
 	}
 	return decimalNumber;
 }
-
-/*
 
 String decimal2hexadecimal (int decimalNumber) {
 	String hexaNumber = "";
@@ -67,12 +50,12 @@ String decimal2hexadecimal (int decimalNumber) {
 	
 	while (decimalNumber > 0) {
 		if ((decimalNumber % 16) != 0) {
-			hexaNumber = hexaNumber + "1";
+			hexaNumber = hexaNumber + decimal2HexaDigit(decimalNumber % 16);
 		}
 		else {
 			hexaNumber = hexaNumber + "0";
 		}
-		decimalNumber = decimalNumber / 2;
+		decimalNumber = decimalNumber / 16;
 	}
 
 	// Now we reverse the hexaNumber String
@@ -85,4 +68,28 @@ String decimal2hexadecimal (int decimalNumber) {
 	return hexaNumberCorrect;
 }
 
-*/
+
+int hexaDigitToDecimal (char hexaDigit) {
+	int ascii = hexaDigit;
+	int hexaNumber;
+	if (ascii >= 48 && ascii <= 57) { // digit is a number
+			hexaNumber = ascii - 48;
+		}
+		else { //digit is a letter
+			hexaNumber = ascii - 87;
+		}
+	return hexaNumber;
+}
+
+char decimal2HexaDigit (int decimal) {
+	int ascii;
+	char hexaDigit;
+	if (decimal > 9) { // number needs to be a letter a-f
+		ascii = decimal + 87;
+	}
+	else {
+		ascii = decimal + 48;
+	}
+	hexaDigit = (char)ascii;
+	return hexaDigit;
+}
