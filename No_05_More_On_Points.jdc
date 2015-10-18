@@ -1,46 +1,116 @@
-Point firstPoint = new Point(); 
+for (int i = 1; i <=10; i++) { // Let's clear the screen a bit
+	println();
+}
+
+String str;
+
+Point firstPoint = new Point();
+
+println ("Please enter the first co-ordinate...");
+print ("The X value: ");
+str = System.console().readLine();
+firstPoint.x = Double.parseDouble(str);
+print ("The Y value: ");
+str = System.console().readLine();
+firstPoint.y = Double.parseDouble(str);
+println();
+
 Point secondPoint = new Point();
 
-firstPoint.x = 5;
-firstPoint.y = 6;
+println ("Please enter the second co-ordinate...");
+print ("The X value: ");
+str = System.console().readLine();
+secondPoint.x = Double.parseDouble(str);
+print ("The Y value: ");
+str = System.console().readLine();
+secondPoint.y = Double.parseDouble(str);
+println();
 
-println (firstPoint.x);
-println (firstPoint.y);
+println ("The distance between the points is " + firstPoint.distanceTo(secondPoint));
+println ("The distance from the first point to the origin is " + firstPoint.distanceToOrigin());
+println ("The distance from the second point to the origin is " + secondPoint.distanceToOrigin());
 
+println ();
+println ("Now let's check the other methods.");
+println ();
 
-secondPoint = opposite ();
+println ("Please enter the a co-ordinate...");
+print ("The X value: ");
+str = System.console().readLine();
+firstPoint.x = Double.parseDouble(str);
+print ("The Y value: ");
+str = System.console().readLine();
+firstPoint.y = Double.parseDouble(str);
+println();
 
-println (firstPoint.x);
-println (firstPoint.y);
-println (secondPoint.x);
-println (secondPoint.y);
+secondPoint.moveTo(firstPoint.x, firstPoint.y); // Two doubles entered
 
-/* distanceTo (Point inputPoint) {
-	distance12 = Math.sqrt(((one.x - two.x) * (one.x - two.x)) + ((one.y - two.y) * (one.y - two.y)));
+println ("Using moveTo(x, y), the new co-ordinates are:");
+println ("X is " + secondPoint.x + " and Y is " + secondPoint.y);
+println ();
 
-	}
+secondPoint.moveTo(firstPoint); // Now one point entered instead
 
-Point opposite (Point inputPoint) {
-	Point outputPoint = new Point();
-	outputPoint.x = (-1) * inputPoint.x;
-	outputPoint.y = (-1) * inputPoint.y;
-	return outputPoint;
-}
+println ("Using moveTo(Point), the new co-ordinates are:");
+println ("X is " + secondPoint.x + " and Y is " + secondPoint.y);
+println ();
 
-	
-	
-	
-	*/
+println ("Please enter the a co-ordinate...");
+print ("The X value: ");
+str = System.console().readLine();
+firstPoint.x = Double.parseDouble(str);
+print ("The Y value: ");
+str = System.console().readLine();
+firstPoint.y = Double.parseDouble(str);
+println();
 
-Point opposite () {
-	Point outputPoint = new Point();
-	outputPoint.x = (-1) * inputPoint.x;
-	outputPoint.y = (-1) * inputPoint.y;
-	return outputPoint;
-}
+secondPoint = firstPoint.clonee();
 
+println ("Using clonee(), the new co-ordinates are:");
+println ("X is " + secondPoint.x + " and Y is " + secondPoint.y);
+println ();
+
+secondPoint = firstPoint.opposite();
+
+println ("Using opposite(), the new co-ordinates are:");
+println ("X is " + secondPoint.x + " and Y is " + secondPoint.y);
+println ();
 
 class Point {
 	double x;
 	double y;
+	double distanceTo(Point inputPoint) {
+		double distance;
+		distance = Math.sqrt(((x - inputPoint.x) * (x - inputPoint.x)) + ((y - inputPoint.y) * (y - inputPoint.y)));
+		return distance;
+	}
+	double distanceToOrigin() {
+		Point tempPoint = new Point();
+		Point zeroPoint = new Point();
+		tempPoint.x = x;
+		tempPoint.y = y;
+		zeroPoint.x = 0;
+		zeroPoint.y = 0;
+		return (tempPoint.distanceTo(zeroPoint));
+	}
+	void moveTo(double x1, double y1) {
+		x = x1;
+		y = y1;
+	}
+	void moveTo(Point inputPoint) {
+		x = inputPoint.x;
+		y = inputPoint.y;
+	}
+	Point clonee() { // WILL NOT ALLOW THE NAME "CLONE"???
+		Point tempPoint = new Point();
+		tempPoint.x = x;
+		tempPoint.y = y;
+		return tempPoint;
+	}
+	Point opposite() {
+		Point tempPoint = new Point();
+		tempPoint.x = (-1 * x);
+		tempPoint.y = (-1 * y);
+		return tempPoint;
+	}
 }
