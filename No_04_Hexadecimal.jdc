@@ -37,15 +37,21 @@ int hexadecimal2decimal (String hexadecimal) {
 	int decimalNumber = 0;
 	char digit;
 	int ascii;
+	int hexaDigit;
 	for (int i = (numberLength - 1); i != (-1); i--) {
 		digit = (hexadecimal.charAt(i));
 		ascii = digit;
-		/* if (ascii >= 48 && ascii <= 57) { // digit is a number
-			decimalNumber = decimalNumber + (1 * (power16 (numberLength - i - 1)));
+		if (ascii >= 48 && ascii <= 57) { // digit is a number
+			hexaDigit = ascii - 48;
 		}
-		*/
+		else { //digit is a letter
+			hexaDigit = ascii - 87;
+		}
+		decimalNumber = decimalNumber + hexaDigit + (1 * (power16 (numberLength - i - 1)));
+		
 		println (digit);
 		println (ascii);
+		println (hexaDigit);
 		
 		
 	}
@@ -54,29 +60,29 @@ int hexadecimal2decimal (String hexadecimal) {
 
 /*
 
-String decimal2binary (int decimalNumber) {
-	String binaryNumber = "";
+String decimal2hexadecimal (int decimalNumber) {
+	String hexaNumber = "";
 	
-	// We create the binary number backwards
+	// We create the hexadecimal number backwards
 	
 	while (decimalNumber > 0) {
-		if ((decimalNumber % 2) == 1) {
-			binaryNumber = binaryNumber + "1";
+		if ((decimalNumber % 16) != 0) {
+			hexaNumber = hexaNumber + "1";
 		}
 		else {
-			binaryNumber = binaryNumber + "0";
+			hexaNumber = hexaNumber + "0";
 		}
 		decimalNumber = decimalNumber / 2;
 	}
 
-	// Now we reverse the binaryNumber String
+	// Now we reverse the hexaNumber String
 
-	String binaryNumberCorrect = "";
+	String hexaNumberCorrect = "";
 
-	for (int i = (binaryNumber.length() - 1); i >= 0; i--){
-		binaryNumberCorrect = binaryNumberCorrect + binaryNumber.charAt(i);
+	for (int i = (hexaNumber.length() - 1); i >= 0; i--){
+		hexaNumberCorrect = hexaNumberCorrect + hexaNumber.charAt(i);
 	}
-	return binaryNumberCorrect;
+	return hexaNumberCorrect;
 }
 
 */
