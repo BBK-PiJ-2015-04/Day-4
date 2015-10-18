@@ -1,0 +1,82 @@
+println ("HEXADECIMAL CONVERSION");
+println ("Enter (1) to convert decimal to hexadecimal");
+println ("      (2) to convert hexadecimal to decimal");
+print ("Your selection: ");
+String userInput = System.console().readLine();
+
+if (userInput.equals("1")) {
+	print ("Enter a decimal number: ");
+	userInput = System.console().readLine();
+	int decimalNumber = Integer.parseInt(userInput);
+	// println ("The hexadecimal equivalent is " + decimal2binary(decimalNumber));
+}
+
+else {
+	print ("Enter a hexadecimal number: ");
+	userInput = System.console().readLine();
+	println ("The decimal equivalent is " + hexadecimal2decimal(userInput));
+}
+
+int power (int base, int exponent) {
+	if (exponent == 0) { // anything to the power of zero is 1!
+		return 1;
+	}
+	int result = base;
+	for (int i = 1; i < exponent; i++) {
+		result = result * base;
+	}
+return result;
+}
+
+int power16 (int exponent) {
+	return (power (16, exponent));
+}
+
+int hexadecimal2decimal (String hexadecimal) {
+	int numberLength = hexadecimal.length();
+	int decimalNumber = 0;
+	char digit;
+	int ascii;
+	for (int i = (numberLength - 1); i != (-1); i--) {
+		digit = (hexadecimal.charAt(i));
+		ascii = digit;
+		/* if (ascii >= 48 && ascii <= 57) { // digit is a number
+			decimalNumber = decimalNumber + (1 * (power16 (numberLength - i - 1)));
+		}
+		*/
+		println (digit);
+		println (ascii);
+		
+		
+	}
+	return decimalNumber;
+}
+
+/*
+
+String decimal2binary (int decimalNumber) {
+	String binaryNumber = "";
+	
+	// We create the binary number backwards
+	
+	while (decimalNumber > 0) {
+		if ((decimalNumber % 2) == 1) {
+			binaryNumber = binaryNumber + "1";
+		}
+		else {
+			binaryNumber = binaryNumber + "0";
+		}
+		decimalNumber = decimalNumber / 2;
+	}
+
+	// Now we reverse the binaryNumber String
+
+	String binaryNumberCorrect = "";
+
+	for (int i = (binaryNumber.length() - 1); i >= 0; i--){
+		binaryNumberCorrect = binaryNumberCorrect + binaryNumber.charAt(i);
+	}
+	return binaryNumberCorrect;
+}
+
+*/
