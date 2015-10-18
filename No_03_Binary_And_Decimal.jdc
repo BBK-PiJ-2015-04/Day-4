@@ -11,7 +11,14 @@ int exponent = Integer.parseInt(userInput);
 print ("Enter a binary number: ");
 String binaryNumber = System.console().readLine();
 
-println (binary2decimal (binaryNumber));
+println ("Here is the conversion to decimal " + binary2decimal (binaryNumber));
+
+print ("Enter a decimal number: ");
+String decimalInput = System.console().readLine();
+int decimalNumber = Integer.parseInt(decimalInput);
+
+println ("Here is the conversion to binary " + decimal2binary (decimalNumber));
+
 
 println (base + " to the power of " + exponent + " is " + power (base, exponent));
 println ("Two to the power of " + exponent + " is " + power2 (exponent));
@@ -44,19 +51,24 @@ int binary2decimal (String binaryNumber) {
 	return decimalNumber;
 }
 
-String decimal2binary (int decimalNum) {
-	int numberLength = binaryNumber.length();
-	int decimalNumber = 0;
-	String digit;
-	for (int i = (numberLength - 1); i != (-1); i--) {
-		digit = (binaryNumber.substring (i, i + 1));
-		if (digit.equals("1")) {
-			decimalNumber = decimalNumber + (1 * (power2 (numberLength - i - 1)));
+String decimal2binary (int decimalNumber) {
+	String binaryNumber = "";
+	while (decimalNumber > 0) {
+		if ((decimalNumber % 2) == 1) {
+			binaryNumber = binaryNumber + "1";
 		}
+		else {
+			binaryNumber = binaryNumber + "0";
+		}
+		decimalNumber = decimalNumber / 2;
 	}
-	return decimalNumber;
-}
 
+	// Now we reverse the binaryNumber String
 
+	String binaryNumberCorrect = "";
 
+	for (int i = (binaryNumber.length() - 1); i >= 0; i--){
+		binaryNumberCorrect = binaryNumberCorrect + binaryNumber.charAt(i);
+	}
+	return binaryNumberCorrect;
 }
