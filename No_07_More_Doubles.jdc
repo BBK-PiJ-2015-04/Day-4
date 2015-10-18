@@ -1,0 +1,37 @@
+String str;
+
+print ("Please enter the borrowed amount: ");
+str = System.console().readLine();
+double borrowed = Double.parseDouble(str);
+
+print ("How many years to pay it back: ");
+str = System.console().readLine();
+double years = Double.parseDouble(str);
+
+print ("And the interest rate: ");
+str = System.console().readLine();
+double interest = Double.parseDouble(str);
+
+println ();
+println ("The total amount to pay is: " + amountToPay(borrowed, interest, years));
+println ("Yearly payment: " + moneyEveryYear(borrowed, interest, years));
+println ("Years to pay off just the interest: " + whenInterestIsPaid(borrowed, interest, years));
+
+double amountToPay (double c, double r, double y) {
+	double t = c;
+	for (int i = 1; i <=  y; i++) {
+		t = t + ((r / 100) * c);
+	}
+	return t;
+}
+
+double moneyEveryYear (double c, double r, double y) {
+	double m = (amountToPay (c, r, y) / y);
+	return m;
+}
+
+double whenInterestIsPaid (double c, double r, double y) {
+	double intAmount = (amountToPay (c, r, y) - c);
+	double moneyPerYear = moneyEveryYear (c, r, y);
+	return (intAmount / moneyPerYear);
+}
