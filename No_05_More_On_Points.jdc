@@ -101,7 +101,7 @@ class Point {
 		x = inputPoint.x;
 		y = inputPoint.y;
 	}
-	Point clonee() { // WILL NOT ALLOW THE NAME "CLONE"???
+	Point clonee() { // WILL NOT ALLOW THE NAME "clone"???
 		Point tempPoint = new Point();
 		tempPoint.x = this.x;
 		tempPoint.y = this.y;
