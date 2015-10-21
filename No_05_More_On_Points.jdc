@@ -103,8 +103,8 @@ class Point {
 	}
 	Point clonee() { // WILL NOT ALLOW THE NAME "CLONE"???
 		Point tempPoint = new Point();
-		tempPoint.x = x;
-		tempPoint.y = y;
+		tempPoint.x = this.x;
+		tempPoint.y = this.y;
 		return tempPoint;
 	}
 	Point opposite() {

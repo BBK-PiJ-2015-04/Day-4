@@ -1,21 +1,44 @@
-println ("HEXADECIMAL CONVERSION");
-println ("Enter (1) to convert decimal to hexadecimal");
-println ("      (2) to convert hexadecimal to decimal");
-print ("Your selection: ");
-String userInput = System.console().readLine();
+blankLines (5);
+println ("   *** HEXADECIMAL CONVERSION ***");
 
-if (userInput.equals("1")) {
-	print ("Enter a decimal number: ");
+String userInput = "1";
+
+while (!(userInput.equals("3"))) {
+	blankLines (2);
+	println ("Enter (1) to convert decimal to hexadecimal");
+	println ("      (2) to convert hexadecimal to decimal");
+	println ("      (3) to quit this program");
+	println ();
+	print ("Your selection: ");
 	userInput = System.console().readLine();
-	int decimalNumber = Integer.parseInt(userInput);
-	println ("The hexadecimal equivalent is " + decimal2hexadecimal(decimalNumber));
+
+	if (userInput.equals("1")) {
+		blankLines (2);
+		print ("Enter a decimal number: ");
+		userInput = System.console().readLine();
+		int decimalNumber = Integer.parseInt(userInput);
+		blankLines (2);
+		println ("The hexadecimal equivalent is " + decimal2hexadecimal(decimalNumber));
+	}
+
+	else if (userInput.equals("2")) {
+		while (checkHexaVailidity(userInput) == false) {
+			blankLines (2);
+			print ("Enter a hexadecimal number starting with 0x: ");
+			userInput = System.console().readLine();
+		}
+		blankLines (2);
+		println ("The decimal equivalent is " + hexadecimal2decimal(userInput));
+	}
+	
+	else {
+		blankLines (2);
+	}
+	
 }
 
-else {
-	print ("Enter a hexadecimal number: ");
-	userInput = System.console().readLine();
-	println ("The decimal equivalent is " + hexadecimal2decimal(userInput));
-}
+println ("Goodbye!");
+blankLines (2);
 
 int power (int base, int exponent) {
 	if (exponent == 0) { // anything to the power of zero is 1!
@@ -34,6 +57,8 @@ int power16 (int exponent) {
 
 int hexadecimal2decimal (String hexadecimal) {
 	int numberLength = hexadecimal.length();
+	hexadecimal = hexadecimal.substring(2, numberLength); // Let's chop off 0x
+	numberLength = numberLength - 2; // The length is now 2 characters shorter
 	int decimalNumber = 0;
 	char digit;
 	for (int i = (numberLength - 1); i != (-1); i--) {
@@ -92,4 +117,34 @@ char decimal2HexaDigit (int decimal) {
 	}
 	hexaDigit = (char)ascii;
 	return hexaDigit;
+}
+
+boolean checkHexaVailidity(String hexaNumber) {
+	int hexaLength = hexaNumber.length();
+	boolean valid = true;
+	// first we check that there are at least three digits
+	if (hexaLength < 3) {
+		valid = false;
+	}
+	// next we check that the first two digits are '0x'
+	else if (!(hexaNumber.substring(0,2).equals("0x"))) {
+		valid = false;
+	}
+	// last we check that each of the remaining digits are either 0-9 or a-f
+	else {
+		int ascii;
+		for (int i = 2; i < hexaLength; i++) {
+			ascii = hexaNumber.charAt(i);
+			if ((ascii < 48 || ascii > 102) || (ascii > 57 && ascii < 96)) {
+				valid = false;
+			}
+		}	
+	}
+	return valid;	
+}
+
+void blankLines(int num) {
+	for (int i = 1; i <= num; i++) {
+		println ();
+	}
 }
