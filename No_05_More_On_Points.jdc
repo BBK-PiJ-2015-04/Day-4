@@ -109,7 +109,7 @@ class Point {
 	}
 	Point opposite() {
 		Point tempPoint = new Point();
-		tempPoint.x = (-1 * x);
+		tempPoint.x = (x * -1);
 		tempPoint.y = (-1 * y);
 		return tempPoint;
 	}
